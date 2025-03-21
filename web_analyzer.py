@@ -31,23 +31,25 @@ keyword = input("Enter keyword to be searched for: ").lower()
 
 text = soup.get_text().lower()
 
-count = text.count(keyword)
+count = text.count(" " + keyword + " ")
 
 print(f"Keyword: {keyword}")
 print(f"Occurrences in page: {count}")
 
 # 5. Word Frequency Analysis
 
-words = re.findall(r'\b[a-z]{2,}\b', text)
+words = text.split(" ")
 
-word_counts = Counter(words)
-
-most_common = word_counts.most_common(5)
+word_counts = {word: text.count(" " + word + " ") for word in words}
 
 print("The Top 5 Most Used Words are:")
-for word, count in most_common:
+for i in range(5):
+    word = max(word_counts, key=word_counts.get)
+    count = word_counts[word]
+    del word_counts[word]
     print(f"{word}: {count} times")
 
+exit(1)
 # 6. Finding the Longest Paragraph
 
 para = soup.find_all("p")
