@@ -48,8 +48,6 @@ for i in range(5):
     count = word_counts[word]
     del word_counts[word]
     print(f"{word}: {count} times")
-
-exit(1)
 # 6. Finding the Longest Paragraph
 
 para = soup.find_all("p")
@@ -59,7 +57,7 @@ max_word_count = 0
 
 for p in para:
     para_text = p.get_text().strip()
-    para_words = para_text.split()
+    para_words = para_text.split(" ")
 
 
     if len(para_words) >= 5 and len(para_words) > max_word_count:
